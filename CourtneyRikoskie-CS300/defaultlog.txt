@@ -1,0 +1,33 @@
+
+You flip to the next page of your book. Your eyes skim the page, unfocused, and the chair creaks as you rock back and forth.
+
+It's been a while since you've felt this bored.
+
+Your master has gone off into town without you for once, and you have been left alone in your little cottage in the woods. Relocating yourself to the front porch has done little to alleviate the mind-numbing-ness of The Uses of Wratagrass, but there was quite literally nothing else to do, barred from making potions as you were. You decide to take a break and close the book with a thwump. Your neck is a bit stiff from looking down for so long, which you pout about. 
+
+'I'm only ten,' you grumble.
+
+The green of the forest is a welcome sight, and you're tempted to go for a walk against your master's wishes until you see a clear shimmering wall reflected in the light. Indignation rises up inside of you. 
+
+A barrier. Most likely to warn Master if you leave, as if the babysitter wasn't enough. Even now, you can feel the invisible eyes of Master's cat watching your every move. 
+
+'I'm already ten!' you say.
+
+Then, as if purposefully trying to worsen your mood, your own cat appears along the edge of the forest, past the barrier, somewhere he definitely wasn't supposed to be.
+
+You jump up. 'What are you doing? If you get spirited away or something, I'm the one who's going to get into trouble!' 
+
+He stares at you for a moment before turning with utmost indifference toward the forest.
+
+'Stop!' You scramble toward him, but by the time you reach the beginnings of the barrier, he's disappeared into the trees.
+
+Front Porch:
+The porch is small, only about half the length of the actual house, and the worn wood creaks beneath your feet.  There are no furnishings besides an inelegant wooden chair.  Behind it, a window peers into the living room, but green curtains block the view.  A sign hangs on the door.
+Exits: north down 
+
+> go north
+Living Room:
+The lighting is dim, the curtains over the window making it difficult to see.  Since it's the warm season, the fireplace is unlit.  Before it, two chairs sit on either side of a low table.  This is where Master does business with her customers and relaxes when she is off hours, but you rarely spend your time here.  It feels stuffy to you.
+Exits: south north 
+
+> 
