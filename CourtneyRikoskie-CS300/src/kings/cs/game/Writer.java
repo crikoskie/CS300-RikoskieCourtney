@@ -22,7 +22,7 @@ import javax.swing.text.StyleConstants;
  * @author Maria Jump
  * @version 2016-12-18
  */
-public class Writer {
+public class Writer implements WriterInterface {
 
 	/** System new line character. */
 	private static final String NEW_LINE;
@@ -37,6 +37,12 @@ public class Writer {
 		NEW_LINE = System.getProperty("line.separator");
 		DEFAULT_LOG = "defaultlog.txt";
 		textArea = null;
+	}
+	
+	/**
+	 * Constructs a Writer with which to output to the screen.
+	 */
+	public Writer() {
 		restartLog();
 	}
 
@@ -46,7 +52,7 @@ public class Writer {
 	 * @param text
 	 *            The text component.
 	 */
-	public static void setTextArea(JTextPane text) {
+	public void setTextArea(JTextPane text) {
 		textArea = text;
 		textArea.setEditable(false);
 	}
@@ -57,7 +63,7 @@ public class Writer {
 	 * @param command
 	 *            The text contained in the command.
 	 */
-	public static void printCommand(String command) {
+	public void printCommand(String command) {
 		SimpleAttributeSet attributes = new SimpleAttributeSet();
 		StyleConstants.setForeground(attributes, Color.BLUE);
 		printWithAttributes(attributes, command + NEW_LINE);
@@ -66,7 +72,7 @@ public class Writer {
 	/**
 	 * Prints an empty line.
 	 */
-	public static void println() {
+	public void println() {
 		standardPrint(NEW_LINE);
 	}
 
@@ -76,7 +82,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The integer to print.
 	 */
-	public static void println(int toPrint) {
+	public void println(int toPrint) {
 		String text = "" + toPrint + NEW_LINE;
 		standardPrint(text);
 	}
@@ -87,7 +93,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The integer to print.
 	 */
-	public static void print(int toPrint) {
+	public void print(int toPrint) {
 		String text = "" + toPrint;
 		standardPrint(text);
 	}
@@ -98,7 +104,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The double to print.
 	 */
-	public static void println(double toPrint) {
+	public void println(double toPrint) {
 		String text = "" + toPrint + NEW_LINE;
 		standardPrint(text);
 	}
@@ -109,7 +115,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The double to print.
 	 */
-	public static void print(double toPrint) {
+	public void print(double toPrint) {
 		String text = "" + toPrint;
 		standardPrint(text);
 	}
@@ -120,7 +126,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The object to print.
 	 */
-	public static void println(Object toPrint) {
+	public void println(Object toPrint) {
 		String text = "" + toPrint + NEW_LINE;
 		standardPrint(text);
 	}
@@ -131,7 +137,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The object to print.
 	 */
-	public static void print(Object toPrint) {
+	public void print(Object toPrint) {
 		String text = "" + toPrint;
 		standardPrint(text);
 	}
@@ -144,7 +150,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The String to print.
 	 */
-	public static void println(String toPrint) {
+	public void println(String toPrint) {
 		String text = toPrint + NEW_LINE;
 		standardPrint(text);
 	}
@@ -156,7 +162,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The String to print.
 	 */
-	public static void print(String toPrint) {
+	public void print(String toPrint) {
 		standardPrint(toPrint);
 	}
 	
@@ -166,7 +172,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The String to print.
 	 */
-	private static void standardPrint(String toPrint) {
+	public void standardPrint(String toPrint) {
 		SimpleAttributeSet attributes = new SimpleAttributeSet();
 		printWithAttributes(attributes, toPrint);
 	}
@@ -182,7 +188,7 @@ public class Writer {
 	 *             If the text area has not been set and we are trying to print
 	 *             to it.
 	 */
-	private static void printWithAttributes(SimpleAttributeSet attributes, String toPrint) throws IllegalStateException {
+	public void printWithAttributes(SimpleAttributeSet attributes, String toPrint) throws IllegalStateException {
 		if (textArea == null) {
 			throw new IllegalStateException("Need to set the text area before printing to it.");
 		}
@@ -207,7 +213,7 @@ public class Writer {
 	/**
 	 * Restart the default log.
 	 */
-	public static void restartLog() {
+	public void restartLog() {
 		try {
 			BufferedWriter log = new BufferedWriter(new FileWriter(DEFAULT_LOG, false));
 			log.close();
@@ -221,7 +227,7 @@ public class Writer {
 	/**
 	 * Copy the default log.
 	 */
-	public static void copyDefaultLog() {
+	public void copyDefaultLog() {
 		Scanner input = null;
 		BufferedWriter output = null;
 		try {
