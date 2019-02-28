@@ -22,11 +22,14 @@ public class World {
     private HashSet<Item> tradeItems;
     /** The non-player characters in the world. */
     private HashMap<String, Character> characters;
+    /** The writer with which to output to screen. */
+    private WriterInterface writer;
     
     /**
      * Constructor for the world.
      */
-    public World() {
+    public World(WriterInterface writer) {
+    	this.writer = writer;
         rooms = new HashMap<String, Room>();
         potions = new HashMap<String, Potion>();
         npcItems = new HashSet<Item>();
@@ -564,13 +567,13 @@ public class World {
      * Creates the non-player characters.
      */
     public void createCharacters() {
-        Conversation taveCon = new Conversation("Tave", "Stay sharp, kid");
-        Conversation fairyCon = new Conversation("Fairy", "Goodbye, insolent child");
-        Conversation guardianCon = new Conversation("Forest Guardian", "Please do come by again soon");
-        Conversation lizardCon = new Conversation("Lizard", "Leave me, small human");
-        Conversation guardsmanCon = new Conversation("Guardsman", "Leave me to my work");
-        Conversation officialCon = new Conversation("Official Camret", "Thank you for your visit to the Fairsway Government Office");
-        Conversation sylCon = new Conversation("Syl", "Bye-bye, little lady");
+        Conversation taveCon = new Conversation("Tave", "Stay sharp, kid", writer);
+        Conversation fairyCon = new Conversation("Fairy", "Goodbye, insolent child", writer);
+        Conversation guardianCon = new Conversation("Forest Guardian", "Please do come by again soon", writer);
+        Conversation lizardCon = new Conversation("Lizard", "Leave me, small human", writer);
+        Conversation guardsmanCon = new Conversation("Guardsman", "Leave me to my work", writer);
+        Conversation officialCon = new Conversation("Official Camret", "Thank you for your visit to the Fairsway Government Office", writer);
+        Conversation sylCon = new Conversation("Syl", "Bye-bye, little lady", writer);
         
         Character tave = new Character("tave", taveCon);
         Character fairy = new Character("fairy", fairyCon);

@@ -44,6 +44,8 @@ public class Main extends JFrame implements ActionListener {
 
 	/** The game instance. */
 	private Game game;
+	/** The writer with which to output to screen. */
+	private Writer writer;
 
 	/** Static block for initializing static fields. */
 	static {
@@ -81,9 +83,10 @@ public class Main extends JFrame implements ActionListener {
 				outputScrollPane.setPreferredSize(outputSize);
 			}
 		});
-		add(BorderLayout.NORTH, outputScrollPane);
+		add(BorderLayout.NORTH, outputScrollPane);		
 		// Set up the Writer so that it can be used throughout the game.
-		Writer.setTextArea(output);
+		writer = new Writer();
+		writer.setTextArea(output);
 
 		// Setting up the bottom panel for input
 		JPanel bottomPane = new JPanel();
@@ -108,7 +111,7 @@ public class Main extends JFrame implements ActionListener {
 		setVisible(true);
 		commandField.requestFocus();
 
-		game = new Game();
+		game = new Game(writer);
 		game.play();
 	}
 
@@ -121,9 +124,8 @@ public class Main extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == saveItem) {
-			Writer.copyDefaultLog();
-		} 
-		else if (event.getSource() == exitItem) {
+			writer.copyDefaultLog();
+		} else if (event.getSource() == exitItem) {
 			System.exit(0);
 		}
 	}
@@ -170,9 +172,9 @@ public class Main extends JFrame implements ActionListener {
 		// gets
 		/**
 		 * Invoked when an action occurs. In this case, prints the text of the
-		 * JTextField to StdOut as an error message to differentiate between
-		 * user input and game output. Triggered every time that "Enter" is
-		 * pressed on the JTextField.
+		 * JTextField to StdOut as an error message to differentiate between user input
+		 * and game output. Triggered every time that "Enter" is pressed on the
+		 * JTextField.
 		 * 
 		 * Triggered every time that "Enter" is pressed on the textfield
 		 * 
@@ -192,18 +194,17 @@ public class Main extends JFrame implements ActionListener {
 		}
 
 		/**
-		 * Reads the next byte of data from the input stream. The value byte is
-		 * returned as an <code>int</code> in the range <code>0</code> to
-		 * <code>255</code>. If no byte is available because the end of the
-		 * stream has been reached, the value <code>-1</code> is returned. This
-		 * method blocks until input data is available, the end of the stream is
-		 * detected, or an exception is thrown.
+		 * Reads the next byte of data from the input stream. The value byte is returned
+		 * as an <code>int</code> in the range <code>0</code> to <code>255</code>. If no
+		 * byte is available because the end of the stream has been reached, the value
+		 * <code>-1</code> is returned. This method blocks until input data is
+		 * available, the end of the stream is detected, or an exception is thrown.
 		 * 
 		 * <p>
 		 * A subclass must provide an implementation of this method.
 		 * 
-		 * @return the next byte of data, or <code>-1</code> if the end of the
-		 *         stream is reached.
+		 * @return the next byte of data, or <code>-1</code> if the end of the stream is
+		 *         reached.
 		 * @exception IOException
 		 *                if an I/O error occurs.
 		 */
@@ -228,8 +229,7 @@ public class Main extends JFrame implements ActionListener {
 						synchronized (this) {
 							this.wait();
 						}
-					} 
-					catch (InterruptedException ex) {
+					} catch (InterruptedException ex) {
 						ex.printStackTrace();
 					}
 				}
