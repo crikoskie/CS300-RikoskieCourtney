@@ -35,15 +35,15 @@ public class Reader {
 	 * Returns the next command from the user.
 	 * @return The next command from the user.
 	 */
-    public static Command getCommand() {
+    public static Command getCommand(WriterInterface writer) {
         String inputLine; // will hold the full input line
         String word1 = null;
         ArrayList<String> restOfLine = null;
 
-        Writer.print("> "); // print prompt
+        writer.print("> "); // print prompt
 
         inputLine = reader.nextLine().toLowerCase();
-        Writer.printCommand(inputLine);
+        writer.printCommand(inputLine);
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
@@ -76,8 +76,8 @@ public class Reader {
      *
      * @return The response typed in by the user.
      */
-    public static String getResponse() {
-    	return getResponseKeepCase().toLowerCase();
+    public static String getResponse(WriterInterface writer) {
+    	return getResponseKeepCase(writer).toLowerCase();
     }
     
     /**
@@ -85,9 +85,9 @@ public class Reader {
      *
      * @return The response typed in by the user.
      */
-    public static String getResponseKeepCase() {
+    public static String getResponseKeepCase(WriterInterface writer) {
         String response = reader.nextLine().trim();
-        Writer.printCommand(response);
+        writer.printCommand(response);
         return response;
     }
 }

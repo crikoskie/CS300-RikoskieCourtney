@@ -60,24 +60,24 @@ public class Conversation {
      * @param trigger The keyword that starts the conversation.
      * @return The key at the stop of the conversation so the game can react if appropriate.
      */
-    public String startConversation(String trigger) {
+    public String startConversation(String trigger, WriterInterface writer) {
         boolean done = false;
         String keyValue = trigger;
         while (!done) {
             keyValue = keyValue.toLowerCase();
             String response = replies.get(keyValue);
             if (response == null) {
-                Writer.println(name + " looks confused at your response and stops talking to you.");
+                writer.println(name + " looks confused at your response and stops talking to you.");
                 done = true;
             }
             else if (response.toLowerCase().contains(signoff)) {
-                Writer.println(name + ": " + response);
+                writer.println(name + ": " + response);
                 done = true;
             }
             else {
-                Writer.println(name + ": " + response);
-                Writer.print("Enter the letter of your response: ");
-                String reply = Reader.getResponse();
+                writer.println(name + ": " + response);
+                writer.print("Enter the letter of your response: ");
+                String reply = Reader.getResponse(writer);
                 keyValue += reply.trim().toLowerCase();
             }
         }

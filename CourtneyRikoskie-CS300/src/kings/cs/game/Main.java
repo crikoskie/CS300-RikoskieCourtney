@@ -108,7 +108,9 @@ public class Main extends JFrame implements ActionListener {
 		setVisible(true);
 		commandField.requestFocus();
 
-		game = new Game();
+		WriterInterface writer = new Writer();
+		
+		game = new Game(writer);
 		game.play();
 	}
 
