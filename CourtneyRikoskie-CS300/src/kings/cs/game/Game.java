@@ -15,7 +15,7 @@ package kings.cs.game;
 
 public class Game {
     /** The world where the game takes place. */
-    private World world;
+    private WorldInterface world;
     /** The score that the player currently has. */
     private int score;
     /** The number of turns that the player has taken. */
@@ -28,6 +28,8 @@ public class Game {
     private static final int TOTAL_SCORE;
     /** Used to output to the screen. */
     private WriterInterface writer;
+    /** Used to read input. */
+    private ReaderInterface reader;
     
     /**
      * Static initializer.
@@ -47,14 +49,19 @@ public class Game {
         turns = 0;
         wantToContinue = true;
         writer = makeWriter();
+        reader = makeReader();
     }
 
-    protected World makeWorld() {
+    protected WorldInterface makeWorld() {
 		return new World();
 	}
     
     protected WriterInterface makeWriter() {
     	return new Writer();
+    }
+    
+    protected ReaderInterface makeReader() {
+    	return new Reader();
     }
     
     protected Player makePlayer() {
@@ -71,7 +78,7 @@ public class Game {
         // execute them until the game is over.
         boolean wantToQuit = false;
         while (!wantToQuit && wantToContinue) {
-            Command command = Reader.getCommand(writer);
+            Command command = reader.getCommand(writer);
             wantToQuit = processCommand(command);
             turns += 1;
             // other stuff that needs to happen every turn can be added here.
@@ -500,7 +507,7 @@ public class Game {
             else {
                 if (door.isLocked()) {
                     writer.println("With which key?");
-                    String response = Reader.getResponse(writer);
+                    String response = reader.getResponse(writer);
                     Item key = door.getKey();
                     String keyName = key.getName();
 
@@ -554,7 +561,7 @@ public class Game {
                     else {
                         writer.println("With which key?");
                         String keyName = key.getName();
-                        String response = Reader.getResponse(writer);
+                        String response = reader.getResponse(writer);
 
                         if (player.isInInventory(response)) {
                             if (response.equals(keyName)) {
@@ -606,7 +613,7 @@ public class Game {
                 else {
                     writer.println("Into which container?");
 
-                    String response = Reader.getResponse(writer);
+                    String response = reader.getResponse(writer);
 
                     if (!(currentRoom.isInRoom(response) || player.isInInventory(response))) {
                         writer.println("You don't see that container anywhere.");
@@ -725,7 +732,7 @@ public class Game {
                 }
                 else {
                     writer.println("What item would you like to unpack from the " + containerName + "?");
-                    String response = Reader.getResponse(writer);
+                    String response = reader.getResponse(writer);
                     Container aContainer = (Container)container;
 
                     if (!aContainer.isInContainer(response)) {
@@ -908,7 +915,7 @@ public class Game {
 
                     writer.println("What would you like to pour it into?");
 
-                    String response = Reader.getResponse(writer);
+                    String response = reader.getResponse(writer);
 
                     if (!(player.isInInventory(response) || currentRoom.isInRoom(response))) {
                         writer.println("You search the room and your pockets, but there is no such item to be found.");
@@ -981,7 +988,7 @@ public class Game {
                     writer.println(book.read());
                     writer.println("What would you like to read about?");
 
-                    String response = Reader.getResponse(writer);
+                    String response = reader.getResponse(writer);
 
                     writer.println(book.goTo(response));
                 }
@@ -1026,7 +1033,7 @@ public class Game {
 
                     writer.println("What would you like to use it on?");
 
-                    String response = Reader.getResponse(writer);
+                    String response = reader.getResponse(writer);
 
                     if (!(currentRoom.isInRoom(response) || player.isInInventory(response))) {
                         writer.println("You search the room and your pockets, but there is no such item to be found.");
@@ -1067,7 +1074,7 @@ public class Game {
             }
             else {
                 Conversation conversation = character.getResponses();
-                conversation.startConversation("hi", writer);
+                conversation.startConversation("hi", writer, reader);
             }
         }
     }
@@ -1093,7 +1100,7 @@ public class Game {
 
                 writer.println("Who do you wish to trade with?");
 
-                String response = Reader.getResponse(writer);
+                String response = reader.getResponse(writer);
                 Character character = currentRoom.getCharacter(response);
 
                 if (character == null) {
@@ -1159,7 +1166,7 @@ public class Game {
      * 
      * @return The game world.
      */
-    protected World getWorld() {
+    protected WorldInterface getWorld() {
     	return world;
     }
     
@@ -1170,6 +1177,24 @@ public class Game {
      */
     protected Player getPlayer() {
     	return player;
+    }
+    
+    /**
+     * Gets the reader.
+     * 
+     * @return The reader.
+     */
+    protected ReaderInterface getReader() {
+    	return reader;
+    }
+    
+    /**
+     * Gets the writer.
+     * 
+     * @return The writer.
+     */
+    protected WriterInterface getWriter() {
+    	return writer;
     }
 
     /**

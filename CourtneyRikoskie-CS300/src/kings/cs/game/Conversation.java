@@ -60,9 +60,10 @@ public class Conversation {
      * @param trigger The keyword that starts the conversation.
      * @return The key at the stop of the conversation so the game can react if appropriate.
      */
-    public String startConversation(String trigger, WriterInterface writer) {
+    public String startConversation(String trigger, WriterInterface writer, ReaderInterface reader) {
         boolean done = false;
         String keyValue = trigger;
+        
         while (!done) {
             keyValue = keyValue.toLowerCase();
             String response = replies.get(keyValue);
@@ -77,7 +78,7 @@ public class Conversation {
             else {
                 writer.println(name + ": " + response);
                 writer.print("Enter the letter of your response: ");
-                String reply = Reader.getResponse(writer);
+                String reply = reader.getResponse(writer);
                 keyValue += reply.trim().toLowerCase();
             }
         }

@@ -24,5 +24,5 @@ public interface Makeable {
      * @param cauldron The container which holds newly made potions.
      * @return Whether making the potion was successful.
      */
-    public String makePotion(Player player, Room room, World world, Container container, PotionContainer cauldron);    
+    public String makePotion(Player player, Room room, WorldInterface world, Container container, PotionContainer cauldron);    
 }

@@ -16,5 +16,5 @@ public interface Useable {
      * @param world The world.
      * @return The effects of the use.
      */
-    public String use(Player player, Room room, Item theItem, World world);
+    public String use(Player player, Room room, Item theItem, WorldInterface world);
 }

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class MockGame extends Game {
-	protected World makeWorld() {
+	protected WorldInterface makeWorld() {
 		return new MockWorld();
 	}
 	
@@ -12,8 +12,12 @@ public class MockGame extends Game {
 		return new MockWriter();
 	}
 	
+	protected ReaderInterface makeReader() {
+		return new MockReader();
+	}
+	
 	protected Player makePlayer() {
-		Player player = new Player(getWorld().getRoom("Starting Room"));
+		Player player = new Player(getWorld().getRoom("front porch"));
 		
 		HashSet<Item> items = getWorld().getTradeItems();
 		Iterator<Item> iter = items.iterator();

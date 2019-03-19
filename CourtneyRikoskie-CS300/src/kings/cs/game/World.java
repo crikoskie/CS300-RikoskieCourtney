@@ -11,7 +11,7 @@ import java.util.HashSet;
  * @author Maria Jump
  * @version 2015.02.01
  */
-public class World {
+public class World implements WorldInterface {
     /** The rooms in the world. */
     private HashMap<String, Room> rooms;
     /** The buildable items. */
@@ -832,7 +832,7 @@ public class World {
      * 
      * @return The items to trade.
      */
-    protected HashSet<Item> getTradeItems() {
+    public HashSet<Item> getTradeItems() {
     	return tradeItems;
     }
     

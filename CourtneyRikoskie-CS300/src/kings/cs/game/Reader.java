@@ -20,7 +20,7 @@ import java.util.Scanner;
  * @author Maria Jump
  * @version 2017.12.18
  */
-public class Reader {
+public class Reader implements ReaderInterface {
 	/** The source of command input. */
 	private static Scanner reader;
     
@@ -35,7 +35,7 @@ public class Reader {
 	 * Returns the next command from the user.
 	 * @return The next command from the user.
 	 */
-    public static Command getCommand(WriterInterface writer) {
+    public Command getCommand(WriterInterface writer) {
         String inputLine; // will hold the full input line
         String word1 = null;
         ArrayList<String> restOfLine = null;
@@ -76,7 +76,7 @@ public class Reader {
      *
      * @return The response typed in by the user.
      */
-    public static String getResponse(WriterInterface writer) {
+    public String getResponse(WriterInterface writer) {
     	return getResponseKeepCase(writer).toLowerCase();
     }
     
