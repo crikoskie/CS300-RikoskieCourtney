@@ -110,7 +110,7 @@ public class Main extends JFrame implements ActionListener {
 
 		WriterInterface writer = new Writer();
 		
-		game = new Game(writer);
+		game = new Game();
 		game.play();
 	}
 

@@ -826,4 +826,31 @@ public class World {
     public Character getCharacter(String theName) {
         return characters.get(theName);
     }
+    
+    /**
+     * Gets the items to trade.
+     * 
+     * @return The items to trade.
+     */
+    protected HashSet<Item> getTradeItems() {
+    	return tradeItems;
+    }
+    
+    /**
+     * Gets the non-playable characters.
+     * 
+     * @return The non-playable characters.
+     */
+    protected HashMap<String, Character> getCharacters() {
+    	return characters;
+    }
+    
+    /**
+     * Gets the rooms.
+     * 
+     * @return The rooms.
+     */
+    protected HashMap<String, Room> getRooms() {
+    	return rooms;
+    }
 }

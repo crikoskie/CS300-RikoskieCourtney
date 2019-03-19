@@ -39,17 +39,29 @@ public class Game {
     /**
      * Create the game and initialize its internal map.
      */
-    public Game(WriterInterface writer) {
-        world = new World();
+    public Game() {
+        world = makeWorld();
         // set the starting room
-        player = new Player(world.getRoom("Front Porch"));
+        player = makePlayer();
         score = 0;
         turns = 0;
         wantToContinue = true;
-        this.writer = writer;
+        writer = makeWriter();
     }
 
-    /**
+    protected World makeWorld() {
+		return new World();
+	}
+    
+    protected WriterInterface makeWriter() {
+    	return new Writer();
+    }
+    
+    protected Player makePlayer() {
+    	return new Player(world.getRoom("Front Porch"));
+    }
+
+	/**
      * Main play routine. Loops until end of play.
      */
     public void play() {
@@ -1158,15 +1170,6 @@ public class Game {
      */
     protected Player getPlayer() {
     	return player;
-    }
-    
-    /**
-     * Gets the writer.
-     * 
-     * @return The writer.
-     */
-    protected WriterInterface getWriter() {
-    	return writer;
     }
 
     /**
