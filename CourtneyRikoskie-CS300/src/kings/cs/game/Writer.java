@@ -30,7 +30,7 @@ public class Writer implements WriterInterface {
 	private static final String DEFAULT_LOG;
 
 	/** The text area that we will be writing to. */
-	private static JTextPane textArea;
+	private static TextPaneInterface textArea;
 
 	/** Static block. */
 	static {
@@ -46,7 +46,7 @@ public class Writer implements WriterInterface {
 	 * @param text
 	 *            The text component.
 	 */
-	public static void setTextArea(JTextPane text) {
+	public static void setTextArea(TextPaneInterface text) {
 		textArea = text;
 		textArea.setEditable(false);
 	}

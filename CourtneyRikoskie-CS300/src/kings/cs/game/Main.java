@@ -69,6 +69,7 @@ public class Main extends JFrame implements ActionListener {
 
 		// Setting out the output area
 		JTextPane output = new JTextPane();
+		TextPane pane = new TextPane(output);
 		outputScrollPane = new JScrollPane(output);
 		Dimension outputSize = new Dimension();
 		outputSize.setSize(WINDOW_DIMENSION.getWidth(), WINDOW_DIMENSION.getHeight() - 100);
@@ -83,7 +84,7 @@ public class Main extends JFrame implements ActionListener {
 		});
 		add(BorderLayout.NORTH, outputScrollPane);
 		// Set up the Writer so that it can be used throughout the game.
-		Writer.setTextArea(output);
+		Writer.setTextArea(pane);
 
 		// Setting up the bottom panel for input
 		JPanel bottomPane = new JPanel();
@@ -107,8 +108,6 @@ public class Main extends JFrame implements ActionListener {
 		setSize(WINDOW_DIMENSION);
 		setVisible(true);
 		commandField.requestFocus();
-
-		WriterInterface writer = new Writer();
 		
 		game = new Game();
 		game.play();
