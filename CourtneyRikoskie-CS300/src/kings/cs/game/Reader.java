@@ -35,7 +35,7 @@ public class Reader implements ReaderInterface {
 	 * Returns the next command from the user.
 	 * @return The next command from the user.
 	 */
-    public Command getCommand(WriterInterface writer) {
+    public Command getCommand(WriterInterface writer, CommandWords commandWords) {
         String inputLine; // will hold the full input line
         String word1 = null;
         ArrayList<String> restOfLine = null;
@@ -61,8 +61,8 @@ public class Reader implements ReaderInterface {
         // Now check whether this word is known. If so, create a command
         // with it. If not, create a "null" command (for unknown command).
         Command result = null;
-        if (CommandWords.isCommand(word1)) {
-            CommandEnum command = CommandWords.getCommand(word1);
+        if (commandWords.isCommand(word1)) {
+            CommandEnum command = commandWords.getCommand(word1);
             result = new Command(command, restOfLine);
         } 
         else {

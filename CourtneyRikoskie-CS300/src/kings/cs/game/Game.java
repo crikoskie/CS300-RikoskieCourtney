@@ -30,6 +30,8 @@ public class Game {
     private WriterInterface writer;
     /** Used to read input. */
     private ReaderInterface reader;
+    /** Commands that the player can use. */
+    private CommandWords commandWords;
     
     /**
      * Static initializer.
@@ -50,6 +52,7 @@ public class Game {
         wantToContinue = true;
         writer = makeWriter();
         reader = makeReader();
+        commandWords = new CommandWords();
     }
 
     protected WorldInterface makeWorld() {
@@ -78,7 +81,7 @@ public class Game {
         // execute them until the game is over.
         boolean wantToQuit = false;
         while (!wantToQuit && wantToContinue) {
-            Command command = reader.getCommand(writer);
+            Command command = reader.getCommand(writer, commandWords);
             wantToQuit = processCommand(command);
             turns += 1;
             // other stuff that needs to happen every turn can be added here.
@@ -291,7 +294,7 @@ public class Game {
         writer.println("You idle for a bit.");
         writer.println();
 
-        String commands = CommandWords.getCommandString();
+        String commands = commandWords.getCommandString();
         writer.println(commands);
     }
 
@@ -1204,5 +1207,14 @@ public class Game {
      */
 	protected boolean getWantToContinue() {
 		return wantToContinue;
+	}
+	
+	/**
+	 * Gets the commands that the player can use.
+	 * 
+	 * @return The commands that the player can use.
+	 */
+	protected CommandWords getCommandWords() {
+		return commandWords;
 	}
 }

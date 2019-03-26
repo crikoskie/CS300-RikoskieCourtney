@@ -15,13 +15,10 @@ import java.util.Iterator;
 
 public class CommandWords {
     /** A constant array that holds all valid command words. */
-    private static HashMap<String, CommandEnum> validCommands;
-
-    /**
-     * Static block to initialize the fields of CommandWords.
-     */
-    static {
-        CommandEnum[] enumCommands = CommandEnum.values();        
+    private HashMap<String, CommandEnum> validCommands;
+    
+    public CommandWords() {
+    	CommandEnum[] enumCommands = CommandEnum.values();        
         HashMap<String, CommandEnum> tempCommands = new HashMap<String, CommandEnum>(); 
         
         for (int index = 0; index < enumCommands.length; index += 1) {
@@ -29,7 +26,11 @@ public class CommandWords {
             tempCommands.put(textCommand, enumCommands[index]);
         }
         
-        validCommands = tempCommands;
+        this.validCommands = tempCommands;
+    }
+    
+    public CommandWords(HashMap<String, CommandEnum> validCommands) {
+    	this.validCommands = validCommands;
     }
 
     /**
@@ -38,7 +39,7 @@ public class CommandWords {
      * @param aString The string to determine whether it is a valid command.
      * @return true if a given string is a valid command, false if it isn't.
      */
-    public static boolean isCommand(String aString) {
+    public boolean isCommand(String aString) {
         boolean valid = false;
         CommandEnum command = validCommands.get(aString);
         
@@ -56,7 +57,7 @@ public class CommandWords {
      *          
      * @return A string containing the list of available commands.
      */
-    public static String getCommandString() {
+    public String getCommandString() {
         String commands = "Your command words are:" + "\n" + "   ";
         Iterator<String> iter = validCommands.keySet().iterator();
         
@@ -76,7 +77,7 @@ public class CommandWords {
      * @return The CommandEnum object representing the command, or null if the command 
           does not exisit
      */
-    public static CommandEnum getCommand(String theString) {
+    public CommandEnum getCommand(String theString) {
         return validCommands.get(theString);
     }
 }

@@ -9,7 +9,7 @@ public class MockReader implements ReaderInterface {
 	}
 
 	@Override
-	public Command getCommand(WriterInterface writer) {
+	public Command getCommand(WriterInterface writer, CommandWords commandWords) {
 		return null;
 	}
 

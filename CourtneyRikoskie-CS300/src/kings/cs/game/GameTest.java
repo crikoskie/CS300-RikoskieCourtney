@@ -6,6 +6,7 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -16,17 +17,19 @@ public class GameTest {
 	private Game game;
 	private WorldInterface world;
 	private Player player;
+	private CommandWords commandWords;
 
 	@Before
 	public void setup() {
 		game = new MockGame();
 		world = game.getWorld();
 		player = game.getPlayer();
+		commandWords = game.getCommandWords();
 	}
 
 	@Test
 	public void testMoveNorthFromStart() {
-		CommandEnum firstWord = CommandWords.getCommand("go");
+		CommandEnum firstWord = commandWords.getCommand("go");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("north");
 		Command command = new Command(firstWord, rest);
@@ -39,7 +42,7 @@ public class GameTest {
 
 	@Test
 	public void testMoveEastFromStart() {
-		CommandEnum firstWord = CommandWords.getCommand("go");
+		CommandEnum firstWord = commandWords.getCommand("go");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("east");
 		Command command = new Command(firstWord, rest);
@@ -51,7 +54,7 @@ public class GameTest {
 
 	@Test
 	public void testMoveWestFromStart() {
-		CommandEnum firstWord = CommandWords.getCommand("go");
+		CommandEnum firstWord = commandWords.getCommand("go");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("west");
 		Command command = new Command(firstWord, rest);
@@ -63,7 +66,7 @@ public class GameTest {
 
 	@Test
 	public void testMoveDownFromStartUnclearedCondition() {
-		CommandEnum firstWord = CommandWords.getCommand("go");
+		CommandEnum firstWord = commandWords.getCommand("go");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("down");
 		Command command = new Command(firstWord, rest);
@@ -77,7 +80,7 @@ public class GameTest {
 
 	@Test
 	public void testMoveDownFromStartClearedCondition() {
-		CommandEnum firstWord = CommandWords.getCommand("go");
+		CommandEnum firstWord = commandWords.getCommand("go");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("down");
 		Command command = new Command(firstWord, rest);
@@ -98,7 +101,7 @@ public class GameTest {
 		Item item = new Item("Item", "An item", 10, 10);
 		player.addToInventory(item);
 		
-		CommandEnum firstWord = CommandWords.getCommand("trade");
+		CommandEnum firstWord = commandWords.getCommand("trade");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("Item");
 		
@@ -116,7 +119,7 @@ public class GameTest {
 	
 	@Test
 	public void testTradeCorrectItem() {		
-		CommandEnum firstWord = CommandWords.getCommand("trade");
+		CommandEnum firstWord = commandWords.getCommand("trade");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("Trade");
 		
@@ -134,7 +137,7 @@ public class GameTest {
 	
 	@Test
 	public void testTradeNoItem() {		
-		CommandEnum firstWord = CommandWords.getCommand("trade");
+		CommandEnum firstWord = commandWords.getCommand("trade");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("Item");
 		
@@ -155,7 +158,7 @@ public class GameTest {
 		Item item = new Item("An Item", "An item", 5, 115);
 		player.addToInventory(item);
 		
-		CommandEnum firstWord = CommandWords.getCommand("trade");
+		CommandEnum firstWord = commandWords.getCommand("trade");
 		ArrayList<String> rest = new ArrayList<String>();
 		rest.add("Trade");
 		
