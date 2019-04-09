@@ -77,7 +77,7 @@ public class Potion extends Item implements Makeable, Useable {
      * @param cauldron The container which holds newly made potions.
      * @return The ingredients used to make the potion.
      */
-    public String makePotion(Player player, Room room, World world, Container container, PotionContainer cauldron) {
+    public String makePotion(Player player, Room room, WorldInterface world, Container container, PotionContainer cauldron) {
         boolean found = false;
         boolean allFound = true;
         String result = null;
@@ -187,7 +187,7 @@ public class Potion extends Item implements Makeable, Useable {
      * @param world The world.
      * @return Whether the potion was successfully used on the item.
      */
-    public String use(Player player, Room room, Item theItem, World world) {
+    public String use(Player player, Room room, Item theItem, WorldInterface world) {
         String result = "You used the " + getName() + ".";
         String itemName = theItem.getName();
         Container theContainer = null;

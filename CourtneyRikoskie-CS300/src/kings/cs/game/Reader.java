@@ -20,7 +20,7 @@ import java.util.Scanner;
  * @author Maria Jump
  * @version 2017.12.18
  */
-public class Reader {
+public class Reader implements ReaderInterface {
 	/** The source of command input. */
 	private static Scanner reader;
     
@@ -35,15 +35,15 @@ public class Reader {
 	 * Returns the next command from the user.
 	 * @return The next command from the user.
 	 */
-    public static Command getCommand() {
+    public Command getCommand(WriterInterface writer, CommandWords commandWords) {
         String inputLine; // will hold the full input line
         String word1 = null;
         ArrayList<String> restOfLine = null;
 
-        Writer.print("> "); // print prompt
+        writer.print("> "); // print prompt
 
         inputLine = reader.nextLine().toLowerCase();
-        Writer.printCommand(inputLine);
+        writer.printCommand(inputLine);
 
         // Find up to two words on the line.
         Scanner tokenizer = new Scanner(inputLine);
@@ -61,8 +61,8 @@ public class Reader {
         // Now check whether this word is known. If so, create a command
         // with it. If not, create a "null" command (for unknown command).
         Command result = null;
-        if (CommandWords.isCommand(word1)) {
-            CommandEnum command = CommandWords.getCommand(word1);
+        if (commandWords.isCommand(word1)) {
+            CommandEnum command = commandWords.getCommand(word1);
             result = new Command(command, restOfLine);
         } 
         else {
@@ -76,8 +76,8 @@ public class Reader {
      *
      * @return The response typed in by the user.
      */
-    public static String getResponse() {
-    	return getResponseKeepCase().toLowerCase();
+    public String getResponse(WriterInterface writer) {
+    	return getResponseKeepCase(writer).toLowerCase();
     }
     
     /**
@@ -85,9 +85,9 @@ public class Reader {
      *
      * @return The response typed in by the user.
      */
-    public static String getResponseKeepCase() {
+    public static String getResponseKeepCase(WriterInterface writer) {
         String response = reader.nextLine().trim();
-        Writer.printCommand(response);
+        writer.printCommand(response);
         return response;
     }
 }

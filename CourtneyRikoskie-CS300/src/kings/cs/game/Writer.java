@@ -22,7 +22,7 @@ import javax.swing.text.StyleConstants;
  * @author Maria Jump
  * @version 2016-12-18
  */
-public class Writer {
+public class Writer implements WriterInterface {
 
 	/** System new line character. */
 	private static final String NEW_LINE;
@@ -30,7 +30,7 @@ public class Writer {
 	private static final String DEFAULT_LOG;
 
 	/** The text area that we will be writing to. */
-	private static JTextPane textArea;
+	private static TextPaneInterface textArea;
 
 	/** Static block. */
 	static {
@@ -46,7 +46,7 @@ public class Writer {
 	 * @param text
 	 *            The text component.
 	 */
-	public static void setTextArea(JTextPane text) {
+	public static void setTextArea(TextPaneInterface text) {
 		textArea = text;
 		textArea.setEditable(false);
 	}
@@ -57,7 +57,7 @@ public class Writer {
 	 * @param command
 	 *            The text contained in the command.
 	 */
-	public static void printCommand(String command) {
+	public void printCommand(String command) {
 		SimpleAttributeSet attributes = new SimpleAttributeSet();
 		StyleConstants.setForeground(attributes, Color.BLUE);
 		printWithAttributes(attributes, command + NEW_LINE);
@@ -66,7 +66,7 @@ public class Writer {
 	/**
 	 * Prints an empty line.
 	 */
-	public static void println() {
+	public void println() {
 		standardPrint(NEW_LINE);
 	}
 
@@ -144,7 +144,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The String to print.
 	 */
-	public static void println(String toPrint) {
+	public void println(String toPrint) {
 		String text = toPrint + NEW_LINE;
 		standardPrint(text);
 	}
@@ -156,7 +156,7 @@ public class Writer {
 	 * @param toPrint
 	 *            The String to print.
 	 */
-	public static void print(String toPrint) {
+	public void print(String toPrint) {
 		standardPrint(toPrint);
 	}
 	
