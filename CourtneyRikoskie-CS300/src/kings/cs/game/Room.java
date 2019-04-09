@@ -82,7 +82,7 @@ public class Room {
 
     /**
      * Returns the number of rooms that have been created in the world.
-     * @return The number of rooms that have been created in the wo rld.
+     * @return The number of rooms that have been created in the world.
      */
     public static int getCounter() {
         return counter;
