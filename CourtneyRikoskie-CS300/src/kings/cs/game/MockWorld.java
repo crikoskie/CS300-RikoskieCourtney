@@ -17,14 +17,21 @@ public class MockWorld implements WorldInterface {
         Room livingRoom = new Room("Living Room", "The lighting is dim, the curtains over the window making it difficult to see.  Since it's the warm season, the fireplace is unlit.  Before it, two chairs sit on either side of a low table.  This is where Master does business with her customers and relaxes when she is off hours, but you rarely spend your time here.  It feels stuffy to you.");
         Room northPath = new Room("North Path", "Gravel crunching beneath your feet, you step onto a trodden down path.  The trees in this forest are known for their height, and you feel even smaller than usual.");
         Room clearing = new Room("Clearing", "For some reason, no trees have grown in this area.  You rest for a moment, a nearby boulder making a good seat, and listen to the grass rustle in the light breeze.");
+        Room backyard = new Room("Backyard", "The yard is covered in all sorts of plants from succulents to trees.  Most are mature and blooming, and you love the vibrant colors, even if the gardening is a lot of work.  There are rows for walking, so you don't accidently step on any of the low-growing plants.  Next to the ash mountain tree, a hatch sits flush to the ground.");
         
         Item hiddenRune = new Item("hidden barrier rune", "An ancient symbol is written upon the paper in ink.  It looks a bit like the silhouette of a frog.", 0, 0);
         clearing.addItem(hiddenRune);
+        
+        Ingredient ingredient = new Ingredient("Ingredient", "An ingredient", 5, 5, 3);
+        backyard.addItem(ingredient);
+        
+        backyard.addDescription("Some of the herbs are starting to look bare.");
         
 		addRoom(frontPorch);
         addRoom(livingRoom);
 		addRoom(northPath);
 		addRoom(clearing);
+		addRoom(backyard);
 		
 		createDoor(frontPorch, "north", livingRoom);
         createDoor(livingRoom, "south", frontPorch);
